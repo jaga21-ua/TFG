@@ -13,7 +13,7 @@ class CreateMensajesTable extends Migration
             $table->timestamp('fecha');
             $table->text('texto');
             $table->boolean('es_persona');
-            $table->foreignId('usuario_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->foreignId('diagnostico_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });

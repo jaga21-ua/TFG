@@ -54,7 +54,7 @@ class MedicamentosController extends Controller
     public function show($id)
     {
         $medicamento = Medicamento::find($id);
-        return view('medicamento.show', ['medicamento' => $medicamento]);
+        return view('medicamento', ['medicamento' => $medicamento]);
     }
 
 }

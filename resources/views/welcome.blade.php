@@ -41,7 +41,7 @@
                         <a class="nav-link" href="#">Médicos</a>
                     </li>
                     <li class="nav-item col separator">
-                        <a class="nav-link" href="#">Medicamentos</a>
+                        <a class="nav-link" href="/medicamentos">Medicamentos</a>
                     </li>
                     <li class="nav-item col separator">
                         <a class="nav-link" href="#">D(ia)gnóstico</a>

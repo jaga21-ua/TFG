@@ -13,7 +13,7 @@
                         Simplifica tu vida y toma el control de tu bienestar hoy mismo.
                     </p>
                     <div class="d-flex">
-                        <a href="#" class="btn btn-outline-light">Iniciar sesión</a>
+                        <a href="" class="btn btn-outline-light">Iniciar sesión</a>
                         <a href="#" class="btn btn-outline-light ms-2">Registrarse</a>
                     </div>
                     

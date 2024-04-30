@@ -68,7 +68,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($medicamentos as $medicamento)
                     <div class="col">
-                        <a class="card bg-info" style="height: 310px;width: 330px;text-decoration: none; color: inherit;" href="/medicamento/{{$medicamento->id}}">
+                        <a href="{{ route('medicamento.show', $medicamento->id) }}" class="card bg-info" style="height: 310px;width: 330px;text-decoration: none; color: inherit;">
                             @php
                                 // Decodificar el JSON de la foto para obtener un array
                                 $fotos = json_decode($medicamento->photo);

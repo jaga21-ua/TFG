@@ -50,4 +50,11 @@ class MedicamentosController extends Controller
             'filtroComercializado' => $filtroComercializado,
         ]);
     } 
+
+    public function show($id)
+    {
+        $medicamento = Medicamento::find($id);
+        return view('medicamento.show', ['medicamento' => $medicamento]);
+    }
+
 }

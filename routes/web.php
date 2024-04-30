@@ -8,3 +8,6 @@ Route::get('/', function () {
 });
 
 Route::get('/medicamentos', [MedicamentosController::class, 'index'])->name('medicamentos.index');
+
+Route::get('/medicamento/{id}', [MedicamentosController::class, 'show'])->name('medicamento.show');
+

@@ -68,7 +68,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 @foreach ($medicamentos as $medicamento)
                     <div class="col">
-                        <div class="card bg-info" style="height: 310px;width: 330px">
+                        <a class="card bg-info" style="height: 310px;width: 330px;text-decoration: none; color: inherit;" href="/medicamento/{{$medicamento->id}}">
                             @php
                                 // Decodificar el JSON de la foto para obtener un array
                                 $fotos = json_decode($medicamento->photo);
@@ -79,12 +79,12 @@
                                 <img src="{{ $fotos[0] }}" class="card-img-top rounded" width="190px" height="170px" alt="{{ $medicamento->nombre }}">
                             @else
                                 {{-- Si no hay fotos, mostrar una imagen predeterminada o un texto alternativo --}}
-                                <img src="{{ asset('imagen_predeterminada.jpg') }}" class="card-img-top" alt="{{ $medicamento->nombre }}">
+                                <img src="{{ asset('medicamentosPredeterminado.png') }}" width="150px" height="180px" class="card-img-top" alt="{{ $medicamento->nombre }}">
                             @endif
                             <div class="card-body">
                                 <h5 class="card-title text-dark">{{ $medicamento->nombre }}</h5>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>

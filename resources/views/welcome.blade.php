@@ -35,21 +35,21 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item col separator">
-                        <a class="nav-link" href="#">Farmacias</a>
+                        <a class="nav-link" href="/Farmacias">Farmacias</a>
                     </li>
                     <li class="nav-item col separator">
-                        <a class="nav-link" href="#">Médicos</a>
+                        <a class="nav-link" href="/Medicos">Médicos</a>
                     </li>
                     <li class="nav-item col separator">
                         <a class="nav-link" href="/medicamentos">Medicamentos</a>
                     </li>
                     <li class="nav-item col separator">
-                        <a class="nav-link" href="#">D(ia)gnóstico</a>
+                        <a class="nav-link" href="/Diagnostico">D(ia)gnóstico</a>
                     </li>
                 </ul>
             </div>
             <div class="d-flex">
-                <a href="#" class="btn btn-outline-light">Iniciar sesión</a>
+                <a href="/login" class="btn btn-outline-light">Iniciar sesión</a>
             </div>
         </div>
     </nav>

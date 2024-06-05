@@ -6,7 +6,7 @@
 
         <div class="row">
             <div class="col-md-6">
-                <form id="filter-form">
+                <form id="filter-form" onsubmit="searchDoctors(); return false;">
                     <div class="form-group">
                         <label for="filtro_especialidad">Filtrar por Especialidad:</label>
                         <select name="filtro_especialidad" id="filtro_especialidad" class="form-control">
@@ -14,11 +14,24 @@
                             <option value="cardiologist">Cardiología</option>
                             <option value="dermatologist">Dermatología</option>
                             <option value="gynecologist">Ginecología</option>
+                            <option value="pediatrician">Pediatría</option>
+                            <option value="neurologist">Neurología</option>
+                            <option value="orthopedist">Ortopedia</option>
+                            <option value="psychiatrist">Psiquiatría</option>
+                            <option value="ophthalmologist">Oftalmología</option>
+                            <option value="urologist">Urología</option>
+                            <option value="endocrinologist">Endocrinología</option>
+                            <option value="gastroenterologist">Gastroenterología</option>
+                            <option value="rheumatologist">Reumatología</option>
+                            <option value="pulmonologist">Neumología</option>
+                            <option value="oncologist">Oncología</option>
+                            <option value="allergist">Alergología</option>
+                            <option value="nephrologist">Nefrología</option>
                             <!-- Agrega más opciones de especialidades aquí -->
                         </select>
                     </div>
 
-                    <button type="button" class="btn btn-primary" onclick="searchDoctors()">Filtrar</button>
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
                 </form>
             </div>
         </div>
@@ -33,8 +46,9 @@
     <script>
         let map;
         let infowindow;
+        let markers = [];
 
-        function initMap() {
+        async function initMap() {
             var defaultLocation = { lat: 40.416775, lng: -3.703790 };
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -73,8 +87,7 @@
             let request = {
                 location: userLocation,
                 radius: 5000,
-                type: ['doctor'],
-                keyword: specialty
+                keyword: specialty || 'doctor'
             };
 
             let service = new google.maps.places.PlacesService(map);
@@ -93,6 +106,8 @@
                 map: map,
                 position: place.geometry.location
             });
+
+            markers.push(marker);
 
             google.maps.event.addListener(marker, 'click', function() {
                 infowindow.setContent('<div style="color: black;"><strong>' + place.name + '</strong><br>' +
@@ -126,16 +141,14 @@
         }
 
         function clearMarkers() {
-            var markers = map.markers || [];
-            markers.forEach(marker => marker.setMap(null));
-            map.markers = [];
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
         }
-
-        document.getElementById('filter-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            searchDoctors();
-        });
     </script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCub_5Fkr2U92yYBckDqsusykToTGg84TU&libraries=places&callback=initMap">
+</script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCub_5Fkr2U92yYBckDqsusykToTGg84TU&libraries=places&callback=initMap"> async defer></script>
 @endsection

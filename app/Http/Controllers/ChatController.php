@@ -5,7 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class ChatController extends Controller
+
 {
+    public function index()
+    {
+        return view('chat');
+    }
+
     public function handleChat(Request $request)
     {
         $symptoms = $request->input('symptoms');
@@ -24,7 +30,7 @@ class ChatController extends Controller
         // Integrar aquí la lógica para obtener diagnóstico y recomendaciones
         // Puedes usar la API de OpenAI, aquí un ejemplo con curl (asegúrate de configurar correctamente tu API Key):
 
-        $apiKey = 'tu-api-key-de-openai';
+        $apiKey = env('OPENAI_API_KEY');
         $url = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 
         $data = [

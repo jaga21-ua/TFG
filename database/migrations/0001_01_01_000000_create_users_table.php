@@ -19,9 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('dni')->unique();
-            $table->string('nombre');
             $table->string('apellidos');
-            $table->string('direccion');
             $table->string('telefono');
             $table->string('ciudad');
             $table->string('codigoPostal');

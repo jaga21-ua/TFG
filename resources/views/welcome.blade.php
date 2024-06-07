@@ -44,7 +44,7 @@
                         <a class="nav-link" href="/medicamentos">Medicamentos</a>
                     </li>
                     <li class="nav-item col separator">
-                        <a class="nav-link" href="/Diagnostico">D(ia)gnóstico</a>
+                        <a class="nav-link" href="/diagnosticoChat">D(ia)gnóstico</a>
                     </li>
                 </ul>
             </div>

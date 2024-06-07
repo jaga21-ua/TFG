@@ -49,7 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the user's diagnostics.
      */
-    public function diagnostics()
+    public function diagnosticos()
     {
         return $this->hasMany(Diagnostico::class);
     }

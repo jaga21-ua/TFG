@@ -18,13 +18,18 @@ Route::get('/Farmacias', [farmacias::class, 'show'])->name('farmacias.show');
 
 Route::get('/Medicos', [medicosController::class, 'show'])->name('medicos.show');
 
-Route::post('/Diagnostico', [ChatController::class, 'handleChat'])->name('chat.handle');
-
-Route::get('/Diagnostico', [ChatController::class, 'index'])->name('chat.index');
-
-
+Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/diagnosticoChat', [ChatController::class, 'store'])->name('chat.store');
+Route::get('/diagnosticoChat/{id}', [ChatController::class, 'show'])->name('chat.show');
 
 
+
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 

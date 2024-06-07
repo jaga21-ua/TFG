@@ -5,6 +5,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnostico extends Model
 {
+
+    protected $fillable = [
+        'user_id',
+        'sintomas',
+        'texto_diagnostico',
+        'gravedad',
+        'tratamiento',
+        
+    ];
+
     public function usuario()
     {
         return $this->belongsTo(Usuario::class);

@@ -49,7 +49,19 @@
                 </ul>
             </div>
             <div class="d-flex">
-                <a href="/login" class="btn btn-outline-light">Iniciar sesión</a>
+                @if(auth()->check())
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ auth()->user()->name }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="/profile">Perfil</a></li>
+                            <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                @else
+                    <a href="/login" class="btn btn-outline-light">Iniciar sesión</a>
+                @endif
             </div>
         </div>
     </nav>

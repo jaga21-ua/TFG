@@ -18,19 +18,18 @@ Route::get('/Farmacias', [farmacias::class, 'show'])->name('farmacias.show');
 
 Route::get('/Medicos', [medicosController::class, 'show'])->name('medicos.show');
 
-Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
-Route::post('/diagnosticoChat', [ChatController::class, 'store'])->name('chat.store');
-Route::get('/diagnosticoChat/{id}', [ChatController::class, 'show'])->name('chat.show');
-
-
-
-
-
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::middleware(['auth.custom'])->group(function () {
+    
+    Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
+    Route::post('/diagnosticoChat', [ChatController::class, 'store'])->name('chat.store');
+    Route::get('/diagnosticoChat/{id}', [ChatController::class, 'show'])->name('chat.show');
+    // Otras rutas protegidas
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth.admin'])->group(function () {
+    // Rutas protegidas para administradores
+});

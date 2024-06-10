@@ -34,19 +34,25 @@
             <div class="container" style="margin-top: 20px;">
                 <div class="row d-flex justify-content-center">
                     <div class="col-md-3 text-center">
-                        <img src="Farmacias.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Farmacias">
-                        <h3>Farmacias</h3>
-                        <p>Encuentra distintas farmacias cerca de tu zona</p>
+                        <a href="/Farmacias" style="color: #ffffff">
+                            <img src="Farmacias.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Farmacias">
+                            <h3>Farmacias</h3>
+                            <p>Encuentra distintas farmacias cerca de tu zona</p>
+                        </a>
                     </div>
                     <div class="col-md-3 text-center">
-                        <img src="Medicos.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Médicos">
-                        <h3>Médicos</h3>
-                        <p>Encuentra distintos médicos cerca de tu zona</p>
+                        <a href="/Medicos" style="color: #ffffff">
+                            <img src="Medicos.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Médicos">
+                            <h3>Médicos</h3>
+                            <p>Encuentra distintos médicos cerca de tu zona</p>
+                        </a>
                     </div>
                     <div class="col-md-3 text-center">
-                        <img src="medicamentos.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Medicamentos">
-                        <h3>Medicamentos</h3>
-                        <p>Busca los medicamentos que necesites</p>
+                        <a href="/medicamentos" style="color: #ffffff">
+                            <img src="medicamentos.png" class="img-fluid rounded-full" width="40px" height="40px" alt="Medicamentos">
+                            <h3>Medicamentos</h3>
+                            <p>Busca los medicamentos que necesites</p>
+                        </a>
                     </div>
                 </div>
                 

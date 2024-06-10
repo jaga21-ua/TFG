@@ -56,7 +56,16 @@
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <li><a class="dropdown-item" href="/profile">Perfil</a></li>
-                            <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                            <li>
+                                <a class="dropdown-item" href="#"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Cerrar sesión
+                                </a>
+                            </li>
+                            
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </ul>
                     </div>
                 @else

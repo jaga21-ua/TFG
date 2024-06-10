@@ -19,6 +19,10 @@ class UserSeeder extends Seeder
             'telefono' => '123456789',
             'ciudad' => 'Madrid',
             'codigoPostal' => '28001',
+            'provincia' => 'Madrid',
+            'edad' => 30,
+            'sexo' => 'Hombre',
+            'esAdmin' => true,
         ]);
 
         User::create([
@@ -30,6 +34,10 @@ class UserSeeder extends Seeder
             'telefono' => '987654321',
             'ciudad' => 'Barcelona',
             'codigoPostal' => '08001',
+            'provincia' => 'Barcelona',
+            'edad' => 25,
+            'sexo' => 'Mujer',
+            
         ]);
     }
 }

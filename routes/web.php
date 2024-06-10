@@ -6,6 +6,7 @@ use App\Http\Controllers\farmacias;
 use App\Http\Controllers\medicosController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Kernel;
 
 
@@ -26,19 +27,23 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::middleware(['auth.custom'])->group(function () {
+Route::middleware([App\Http\Middleware\MyMiddleWare::class])->group(function () {
     
     Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
     Route::post('/diagnosticoChat', [ChatController::class, 'store'])->name('chat.store');
     Route::get('/diagnosticoChat/{id}', [ChatController::class, 'show'])->name('chat.show');
     Route::post('/handleChat', [ChatController::class, 'handleChat']);
-    // Otras rutas protegidas
-//});
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+    Route::put('/profile', [UserController::class, 'update'])->name('profile.update');
+    
+});
 
-//Route::middleware(['auth.admin'])->group(function () {
+Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function () {
     // Rutas protegidas para administradores
     Route::get('/adminMenu', function () {
         return view('adminMenu');
     })->name('adminMenu');
     
-//});
+});

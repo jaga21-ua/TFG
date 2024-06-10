@@ -28,7 +28,7 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">D(ia)gnóstico</a>
+            <a class="navbar-brand" href="/">D(ia)gnóstico</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -63,6 +63,10 @@
                     <a href="/login" class="btn btn-outline-light">Iniciar sesión</a>
                 @endif
             </div>
+            @if(auth()->check() && auth()->user()->esAdmin == 1)
+                <a href="/adminMenu" class="btn btn-outline-light">Admin</a>
+                
+            @endif
         </div>
     </nav>
 

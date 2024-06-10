@@ -1,22 +1,22 @@
 @extends('welcome')
 
 @section('content')
-<div class="container">
+<div class="container text-black">
     <h1>Chat de Diagnóstico</h1>
     <div class="row">
         <div class="col-md-4">
-            <div class="list-group" id="chat-list">
+            <div class="list-group" style="background-color: #00C8F8" id="chat-list">
                 @foreach($diagnosticos as $diagnostico)
                     <a href="#" class="list-group-item list-group-item-action" data-id="{{ $diagnostico->id }}" onclick="loadMessages({{ $diagnostico->id }})">
-                        {{ $diagnostico->sintomas }}
+                        {{ $diagnostico->texto_diagnostico }}
                     </a>
                 @endforeach
             </div>
         </div>
         <div class="col-md-8">
-            <div class="chat-container">
-                <div id="chat-box" class="chat-box"></div>
-                <div class="input-group mb-3">
+            <div class="chat-container" style="background-color:#88E6FF;width:820px;height: 535px;display: flex;flex-direction: column;border-radius: 30px">
+                <div id="chat-box" class="chat-box" style="flex: 1; overflow-y: auto; padding: 10px;"></div>
+                <div class="input-group mb-3" style="margin-top: auto; width: 90%; margin-left: auto; margin-right: auto;">
                     <input type="text" id="user-input" class="form-control" placeholder="Describe tus síntomas..." aria-label="Describe tus síntomas...">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" onclick="sendMessage()" id="send-btn">Enviar</button>
@@ -25,39 +25,89 @@
             </div>
         </div>
     </div>
+    <style>
+        .user-message {
+            font-family: 'Source Sans 3', sans-serif;
+            background-color: #ffffff; /* Fondo blanco */
+            color: #000000; /* Color de*/
+            border-radius: 10px;
+            text-align: right;
+            padding: 10px;
+            width: 50%;
+            margin-left: auto; /* Mover el mensaje del usuario a la derecha */
+            
+        }
+        .bot-message {
+            font-family: 'Source Sans 3', sans-serif;
+            background-color: #00C8F8;
+            color: #ffffff; /* Color de texto blanco para mayor contraste */
+            margin: 0;
+            padding: 10px;
+            border-radius: 10px;
+            width: 50%;
+        }
+        
+    </style>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     let selectedDiagnosticoId = null;
+    let currentQuestionIndex = 0;
+    let answers = [];
+
+    function appendMessage(text, isUser = false) {
+        let messageClass = isUser ? 'user-message' : 'bot-message';
+        let messageElement = $('<div></div>').addClass(messageClass).text(text);
+        $('#chat-box').append(messageElement);
+        $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+    }
 
     function sendMessage() {
         let userInput = $('#user-input').val().trim();
         if (userInput === '') return;
-        console.log(selectedDiagnosticoId)
 
-        let userMessage = $('<div class="user-message"></div>').text(userInput);
-        $('#chat-box').append(userMessage);
+        appendMessage(userInput, true);
 
         $.ajax({
-            url: '/diagnosticoChat',
+            url: '/handleChat',
             method: 'POST',
             data: {
-                symptoms: userInput,
-                diagnostico_id: selectedDiagnosticoId,
+                response: userInput,
+                current_question_index: currentQuestionIndex,
+                answers: answers,
                 _token: '{{ csrf_token() }}'
             },
             success: function(response) {
-                console.log(response)
-                let botMessage = $('<div class="bot-message"></div>').text(response.response);
-                $('#chat-box').append(botMessage);
-                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                if (response.question) {
+                    currentQuestionIndex = response.current_question_index;
+                    answers = response.answers;
+                    $('#user-input').val('');
+                    $('#user-input').attr('placeholder', response.question);
+                    appendMessage(response.question);
+                } else if (response.summary) {
+                    appendMessage(response.summary);
+                    
+                    // Llamada AJAX para almacenar el resumen como un mensaje
+                    $.ajax({
+                        url: '/diagnosticoChat',
+                        method: 'POST',
+                        data: {
+                            symptoms: response.summary,
+                            diagnostico_id: selectedDiagnosticoId,
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(storeResponse) {
+                            appendMessage(storeResponse.response);
+                        },
+                        error: function(error) {
+                            appendMessage('Error al guardar el diagnóstico.');
+                        }
+                    });
+                }
             },
             error: function(error) {
-                console.log(error)
-                let botMessage = $('<div class="bot-message"></div>').text('Error al procesar la solicitud.');
-                $('#chat-box').append(botMessage);
-                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                appendMessage('Error al procesar la solicitud.');
             }
         });
 
@@ -76,18 +126,32 @@
             success: function(response) {
                 $('#chat-box').empty();
                 response.forEach(function(message) {
-                    console.log(message)
-                    let messageElement = $('<div class="' + (message.es_persona ? 'user-message' : 'bot-message') + '"></div>').text(message.texto);
-                    $('#chat-box').append(messageElement);
+                    appendMessage(message.texto, message.es_persona);
                 });
-                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
             },
             error: function() {
-                let botMessage = $('<div class="bot-message"></div>').text('Error al cargar los mensajes.');
-                $('#chat-box').append(botMessage);
-                $('#chat-box').scrollTop($('#chat-box')[0].scrollHeight);
+                appendMessage('Error al cargar los mensajes.');
             }
         });
     }
+
+    $(document).ready(function() {
+        // Load the first question
+        $.ajax({
+            url: '/handleChat',
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                if (response.question) {
+                    currentQuestionIndex = response.current_question_index;
+                    answers = response.answers;
+                    $('#user-input').attr('placeholder', response.question);
+                    appendMessage(response.question);
+                }
+            }
+        });
+    });
 </script>
 @endsection

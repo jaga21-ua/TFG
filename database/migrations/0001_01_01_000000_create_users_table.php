@@ -23,6 +23,9 @@ return new class extends Migration
             $table->string('telefono');
             $table->string('ciudad');
             $table->string('codigoPostal');
+            $table->string('provincia');
+            $table->int('edad');
+            $table->string('sexo');
             $table->boolean('esAdmin')->default(false);
             $table->timestamps();
         });

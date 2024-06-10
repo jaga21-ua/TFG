@@ -12,6 +12,7 @@ class Mensaje extends Model
         'texto',
         'es_persona',
         'user_id',
+        'fecha',
     ];
     public function usuario()
     {

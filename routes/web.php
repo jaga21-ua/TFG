@@ -5,6 +5,10 @@ use App\Http\Controllers\MedicamentosController;
 use App\Http\Controllers\farmacias;
 use App\Http\Controllers\medicosController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\HomeController;
+use App\Http\Kernel;
+
+
 
 Route::get('/', function () {
     return view('main');
@@ -22,14 +26,19 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth.custom'])->group(function () {
+//Route::middleware(['auth.custom'])->group(function () {
     
     Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
     Route::post('/diagnosticoChat', [ChatController::class, 'store'])->name('chat.store');
     Route::get('/diagnosticoChat/{id}', [ChatController::class, 'show'])->name('chat.show');
+    Route::post('/handleChat', [ChatController::class, 'handleChat']);
     // Otras rutas protegidas
-});
+//});
 
-Route::middleware(['auth.admin'])->group(function () {
+//Route::middleware(['auth.admin'])->group(function () {
     // Rutas protegidas para administradores
-});
+    Route::get('/adminMenu', function () {
+        return view('adminMenu');
+    })->name('adminMenu');
+    
+//});

@@ -45,5 +45,20 @@ Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function 
     Route::get('/adminMenu', function () {
         return view('adminMenu');
     })->name('adminMenu');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{id}', [UserController::class, 'updateAdmin'])->name('users.update');
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');   
+
+
+    Route::get('/medicamentosAdmin', [MedicamentosController::class, 'indexAdmin'])->name('medicamentos.indexAdmin');
+    Route::get('/medicamentosAdmin/{id}/edit', [MedicamentosController::class, 'edit'])->name('medicamento.edit');
+    Route::put('/medicamentosAdmin/{id}', [MedicamentosController::class, 'update'])->name('medicamentos.update');
+    Route::delete('/medicamentosAdmin/{id}', [MedicamentosController::class, 'destroy'])->name('medicamento.destroy');
+    Route::get('/medicamentosAdmin/create', [MedicamentosController::class, 'create'])->name('medicamentos.create');
+    Route::post('/medicamentosAdmin', [MedicamentosController::class, 'store'])->name('medicamentos.store');
+    Route::get('/medicamentosAdmin/{id}', [MedicamentosController::class, 'showAdmin'])->name('medicamentos.showAdmin');
+
     
 });

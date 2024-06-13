@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medicamento; 
+use Illuminate\Support\Str;
+
 
 class MedicamentosController extends Controller
 {
@@ -106,7 +108,7 @@ class MedicamentosController extends Controller
     }
     public function create()
     {
-        return view('medicamento.medicamentoCreate');
+        return view('medicamento.form');
     }
     public function store(Request $request)
     {
@@ -146,13 +148,12 @@ class MedicamentosController extends Controller
     public function edit($id)
     {
         $medicamento = Medicamento::find($id);
-        return view('medicamentos.medicamentoEdit', ['medicamento' => $medicamento]);
+        return view('medicamentos.form', ['medicamento' => $medicamento]);
     }
     public function update(Request $request, $id)
     {
         $medicamento = Medicamento::find($id);
         $medicamento->nombre = $request->input('nombre');
-        $medicamento->descripcion = $request->input('descripcion');
         $medicamento->receta = $request->input('receta');
         $medicamento->conduc = $request->input('conduc');
         $medicamento->viasAdministracion = $request->input('viasAdministracion');

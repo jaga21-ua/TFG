@@ -86,15 +86,17 @@
                         <td>{{ $medicamento->nombre }}</td>
                         <td>{{ $medicamento->receta ? 'Sí' : 'No' }}</td>
                         <td>{{ $medicamento->conducir ? 'Sí' : 'No' }}</td>
-                        <td>{{ $medicamento->vias_administracion }}</td>
+                        <td>{{ $medicamento->viasAdministracion }}</td>
                         <td>{{ $medicamento->comercializado ? 'Sí' : 'No' }}</td>
                         <td>
                             <a href="{{ route('medicamento.show', $medicamento->id) }}" class="btn btn-info btn-sm">Ver</a>
                             <a href="{{ route('medicamento.edit', $medicamento->id) }}" class="btn btn-primary btn-sm">Editar</a>
-                            <form action="{{ route('medicamento.destroy', $medicamento->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('medicamento.destroy', $medicamento->id) }}"method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este medicamento?')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
                             </form>
                         </td>
                     </tr>

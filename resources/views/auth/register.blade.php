@@ -63,7 +63,7 @@
 
                             <div class="col-md-6">
                                 <label for="Apellidos" class="col-form-label">{{ __('Apellidos') }}</label>
-                                <input id="Apellidos" type="text" class="form-control @error('Apellidos') is-invalid @enderror" name="Apellidos" value="{{ old('Apellidos') }}" required autocomplete="DNI" autofocus>
+                                <input id="Apellidos" type="text" class="form-control @error('Apellidos') is-invalid @enderror" name="Apellidos" value="{{ old('Apellidos') }}" required autocomplete="Apellidos" autofocus>
                                 @error('Apellidos')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -94,26 +94,65 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label for="Provincia" class="col-form-label">{{ __('Provincia') }}</label>
-                                <input id="Provincia" type="text" class="form-control @error('Provincia') is-invalid @enderror" name="Provincia" value="{{ old('Provincia') }}" required autocomplete="Provincia" autofocus>
-                                @error('Provincia')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="mb-3">
+                            <label for="comunidad" class="form-label">Comunidad Autónoma</label>
+                            <select id="comunidad" class="form-select @error('comunidad') is-invalid @enderror" name="comunidad">
+                                <option value="">Seleccione una Comunidad Autónoma</option>
+                            </select>
+                            @error('comunidad')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
 
-                            <div class="col-md-6">
-                                <label for="Ciudad" class="col-form-label">{{ __('Ciudad') }}</label>
-                                <input id="Ciudad" type="text" class="form-control @error('Ciudad') is-invalid @enderror" name="Ciudad" value="{{ old('Ciudad') }}" required autocomplete="Ciudad" autofocus>
-                                @error('Ciudad')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="mb-3">
+                            <label for="provincia" class="form-label">Provincia</label>
+                            <select id="provincia" class="form-select @error('provincia') is-invalid @enderror" name="provincia" disabled>
+                                <option value="">Seleccione una Provincia</option>
+                            </select>
+                            @error('provincia')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="ciudad" class="form-label">Ciudad</label>
+                            <select id="ciudad" class="form-select @error('ciudad') is-invalid @enderror" name="ciudad" disabled>
+                                <option value="">Seleccione una Ciudad</option>
+                            </select>
+                            @error('ciudad')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="edad" class="col-form-label">{{ __('Edad') }}</label>
+                            <input id="edad" type="number" class="form-control @error('edad') is-invalid @enderror" name="edad" value="{{ old('edad') }}" required autocomplete="edad" autofocus>
+                            @error('edad')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="sexo" class="col-form-label">{{ __('Sexo') }}</label>
+                            <select id="sexo" class="form-select @error('sexo') is-invalid @enderror" name="sexo" required>
+                                <option value="">Seleccione su Sexo</option>
+                                <option value="Masculino" {{ old('sexo') == 'Masculino' ? 'selected' : '' }}>Masculino</option>
+                                <option value="Femenino" {{ old('sexo') == 'Femenino' ? 'selected' : '' }}>Femenino</option>
+                                <option value="Otro" {{ old('sexo') == 'Otro' ? 'selected' : '' }}>Otro</option>
+                            </select>
+                            @error('sexo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="row mb-0">
@@ -129,4 +168,58 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    fetch('/locations.json')
+        .then(response => response.json())
+        .then(data => {
+            let comunidadSelect = document.getElementById('comunidad');
+            let provinciaSelect = document.getElementById('provincia');
+            let ciudadSelect = document.getElementById('ciudad');
+
+            data.forEach(comunidad => {
+                let option = document.createElement('option');
+                option.value = comunidad.label;
+                option.text = comunidad.label;
+                comunidadSelect.appendChild(option);
+            });
+
+            comunidadSelect.addEventListener('change', function () {
+                let selectedComunidad = data.find(c => c.label === this.value);
+
+                provinciaSelect.innerHTML = '<option value="">Seleccione una Provincia</option>';
+                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+                provinciaSelect.disabled = !selectedComunidad;
+                ciudadSelect.disabled = true;
+
+                if (selectedComunidad) {
+                    selectedComunidad.provinces.forEach(provincia => {
+                        let option = document.createElement('option');
+                        option.value = provincia.label;
+                        option.text = provincia.label;
+                        provinciaSelect.appendChild(option);
+                    });
+                }
+            });
+
+            provinciaSelect.addEventListener('change', function () {
+                let selectedComunidad = data.find(c => c.label === comunidadSelect.value);
+                let selectedProvincia = selectedComunidad.provinces.find(p => p.label === this.value);
+
+                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+                ciudadSelect.disabled = !selectedProvincia;
+
+                if (selectedProvincia) {
+                    selectedProvincia.towns.forEach(ciudad => {
+                        let option = document.createElement('option');
+                        option.value = ciudad.label;
+                        option.text = ciudad.label;
+                        ciudadSelect.appendChild(option);
+                    });
+                }
+            });
+        });
+});
+</script>
 @endsection

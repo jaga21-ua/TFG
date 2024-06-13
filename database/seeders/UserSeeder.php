@@ -23,6 +23,8 @@ class UserSeeder extends Seeder
             'edad' => 30,
             'sexo' => 'Hombre',
             'esAdmin' => true,
+            'comunidad' => 'Madrid',
+
         ]);
 
         User::create([
@@ -37,6 +39,8 @@ class UserSeeder extends Seeder
             'provincia' => 'Barcelona',
             'edad' => 25,
             'sexo' => 'Mujer',
+            'comunidad' => 'Cataluña',
+            
             
         ]);
     }

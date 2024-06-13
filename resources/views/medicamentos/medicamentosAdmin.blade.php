@@ -65,6 +65,9 @@
             </div>
         </div>
     </form>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('medicamentos.create') }}" class="btn btn-success">Nuevo medicamento</a>
+    </div>
 
     @if ($medicamentos->count() > 0)
         <table class="table table-bordered">

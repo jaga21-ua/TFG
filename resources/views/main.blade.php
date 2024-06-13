@@ -3,6 +3,15 @@
 @section('content')
     <div style="border-top: 2px solid #ffffff;"  >
         <div class="container" style="margin-top:2%;margin-bottom: 2%">
+            @if (auth()->check())
+                <h1 class="d-flex justify-content-center">¡Bienvenido, {{ auth()->user()->name }}!</h1>
+                <p class="d-flex justify-content-center">¡Gracias por unirte a nuestra aplicación médica!</p>
+                <p class="d-flex justify-content-center">¡Esperamos que disfrutes de nuestro D(ia)gnóstico</p>
+                <a class="btn btn-info d-flex justify-content-center" href="/diagnosticoChat">D(ia)gnóstico</a>
+            
+    
+                
+            @else
             <div class="row" style="margin-left: 10%">
                 <!-- Columna izquierda -->
                 <div class="col-md-6">
@@ -23,6 +32,9 @@
                     <img src="fondo.jpg"  width="400px" height="290px" class="img-fluid rounded" alt="Imagen de fondo">
                 </div>
             </div>
+                
+            @endif
+            
         </div>
     </div>
     <div style="border-top: 2px solid #ffffff; margin-bottom: 20px;">
@@ -62,16 +74,46 @@
     </div>
     
     <div style="border-top: 2px solid #ffffff;" >
-        <div class="container text-center" style="margin-top:2%;margin-bottom: 2%">
-            <h2 class="">D(ia)gnóstico</h2>
+        <div class="container text-center" style="margin-top: 2%; margin-bottom: 2%">
+            <h2 class="text-white">D(ia)gnóstico</h2>
             <div>
-                <h4 class="text-dark bg-light rounded p-2 mb-3 d-inline-block">Registrate y haz uso de nuestro diagnosticador que funciona con IA!</h4>
+                <h4 class="text-dark bg-white rounded p-2 mb-3 d-inline-block">Regístrate y haz uso de nuestro diagnosticador que funciona con IA!</h4>
                 <div class="row justify-content-center">
-                    <div class="col-md-2 text-center text-dark bg-light rounded p-2 mr-md-5 mb-3">Añade tus síntomas en un chat con nuestra IA</div>    
-                    <div class="col-md-2 text-center text-dark bg-light rounded p-2 mx-md-5 mb-3">Te mostrará posibles diagnósticos según tus síntomas</div>    
-                    <div class="col-md-2 text-center text-dark bg-light rounded p-2 ml-md-5 mb-3">Te dirá qué medicamentos tomar y si estos necesitan receta</div>    
+                    <div class="col-md-3 text-center text-dark rounded p-2 mr-md-3 mb-3" style="height: 250px">
+                        <p class="bg-light rounded p-2">Añade tus síntomas en un chat con nuestra IA</p>
+                        
+                    </div>
+                    <div class="col-md-3 text-center text-dark rounded p-2 mx-md-3 mb-3" style="height: 250px">
+                        <p class="bg-light rounded p-2">Te mostrará posibles diagnósticos según dichos síntomas</p>
+                        
+                    </div>
+                    <div class="col-md-3 text-center text-dark rounded p-2 ml-md-3 mb-3" style="height: 250px">
+                        <p class="bg-light rounded p-2">Podrá decirte qué medicamentos necesitas y si estos necesitan receta</p>
+                        
+                    </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
+    <style>
+        body {
+            background-color: #00AEEF; /* Ajusta este color al color de fondo que desees */
+        }
+    
+        .col-md-3 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white; /* Para añadir el borde blanco alrededor de cada cuadro */
+        }
+    
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+    
+        h4 {
+            padding: 0.5rem;
+        }
+    </style>
 @endsection

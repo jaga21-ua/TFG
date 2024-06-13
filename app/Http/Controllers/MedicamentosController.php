@@ -108,13 +108,13 @@ class MedicamentosController extends Controller
     }
     public function create()
     {
-        return view('medicamento.form');
+        return view('medicamentos.form');
     }
     public function store(Request $request)
     {
         $medicamento = new Medicamento();
         $medicamento->nombre = $request->input('nombre');
-        $medicamento->descripcion = $request->input('descripcion');
+        
         $medicamento->receta = $request->input('receta');
         $medicamento->conduc = $request->input('conduc');
         $medicamento->viasAdministracion = $request->input('viasAdministracion');

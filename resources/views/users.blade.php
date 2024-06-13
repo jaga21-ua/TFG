@@ -17,8 +17,9 @@
                                 <th>Correo</th>
                                 <th>Teléfono</th>
                                 <th>CP</th>
-                                <th>Ciudad</th>
                                 <th>Provincia</th>
+                                <th>Ciudad</th>
+                                <th>Comunidad</th>
                                 <th>Edad</th>
                                 <th>Sexo</th>
                                 <th>Opciones</th>
@@ -33,8 +34,9 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->telefono }}</td>
                                     <td>{{ $user->codigoPostal }}</td>
-                                    <td>{{ $user->ciudad }}</td>
                                     <td>{{ $user->provincia }}</td>
+                                    <td>{{ $user->ciudad }}</td>
+                                    <td>{{ $user->comunidad }}</td>
                                     <td>{{ $user->edad }}</td>
                                     <td>{{ $user->sexo }}</td>
                                     <td>

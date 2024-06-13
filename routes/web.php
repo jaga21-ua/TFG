@@ -23,10 +23,6 @@ Route::get('/Farmacias', [farmacias::class, 'show'])->name('farmacias.show');
 
 Route::get('/Medicos', [medicosController::class, 'show'])->name('medicos.show');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware([App\Http\Middleware\MyMiddleWare::class])->group(function () {
     
     Route::get('/diagnosticoChat', [ChatController::class, 'index'])->name('chat.index');
@@ -62,3 +58,8 @@ Route::middleware([App\Http\Middleware\AdminMiddleware::class])->group(function 
 
     
 });
+
+Auth::routes();
+
+Auth::routes(['verify' => true]);
+

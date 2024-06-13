@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,15 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'DNI' => ['required', 'string', 'max:255'],
+            'Telefono' => ['required', 'string', 'max:20'],
+            'Apellidos' => ['required', 'string', 'max:255'],
+            'Codigo_Postal' => ['required', 'string', 'max:10'],
+            'ciudad' => ['required', 'string', 'max:255'],
+            'provincia' => ['required', 'string', 'max:255'],
+            'edad' => ['required', 'integer', 'min:1', 'max:120'],
+            'sexo' => ['required', 'string', 'in:Masculino,Femenino,Otro'],
+            'comunidad' => ['required', 'string', 'max:255'],
         ]);
     }
 

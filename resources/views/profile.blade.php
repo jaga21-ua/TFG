@@ -28,7 +28,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Información del Usuario</h5>
+                    <h5 class="card-title" >Información del Usuario</h5>
                     <div id="infoSection">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Nombre:</strong> {{ auth()->user()->name }}</li>
@@ -36,11 +36,12 @@
                             <li class="list-group-item"><strong>DNI:</strong> {{ auth()->user()->dni }}</li>
                             <li class="list-group-item"><strong>Apellidos:</strong> {{ auth()->user()->apellidos }}</li>
                             <li class="list-group-item"><strong>Teléfono:</strong> {{ auth()->user()->telefono }}</li>
-                            <li class="list-group-item"><strong>Ciudad:</strong> {{ auth()->user()->ciudad }}</li>
                             <li class="list-group-item"><strong>Código Postal:</strong> {{ auth()->user()->codigoPostal }}</li>
-                            <li class="list-group-item"><strong>Provincia:</strong> {{ auth()->user()->provincia }}</li>
                             <li class="list-group-item"><strong>Edad:</strong> {{ auth()->user()->edad }}</li>
                             <li class="list-group-item"><strong>Sexo:</strong> {{ auth()->user()->sexo }}</li>
+                            <li class="list-group-item"><strong>Comunidad Autónoma:</strong> {{ auth()->user()->comunidad }}</li>
+                            <li class="list-group-item"><strong>Provincia:</strong> {{ auth()->user()->provincia }}</li>
+                            <li class="list-group-item"><strong>Ciudad:</strong> {{ auth()->user()->ciudad }}</li>
                             <li class="list-group-item"><strong>Es Administrador:</strong> {{ auth()->user()->esAdmin ? 'Sí' : 'No' }}</li>
                         </ul>
                         <div>
@@ -78,9 +79,14 @@
                                 <input type="text" class="form-control" name="telefono" value="{{ auth()->user()->telefono }}">
                             </li>
                             <li class="list-group-item">
-                                <strong>Ciudad:</strong>
-                                <input type="text" class="form-control" name="ciudad" value="{{ auth()->user()->ciudad }}">
+                                <strong>Código Postal:</strong>
+                                <input type="text" class="form-control" name="codigoPostal" value="{{ auth()->user()->codigoPostal }}">
                             </li>
+                            <li class="list-group-item">
+                                <strong>Cambiar contraseña:</strong>
+                                <input type="password" class="form-control" name="password">
+                            </li>
+                            
                         </ul>
                     </div>
                     
@@ -88,12 +94,44 @@
                     <div class="col-md-6">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
-                                <strong>Código Postal:</strong>
-                                <input type="text" class="form-control" name="codigoPostal" value="{{ auth()->user()->codigoPostal }}">
+                                <div class="mb-3">
+                                    <label for="comunidad" class="form-label">Comunidad Autónoma</label>
+                                    <select id="comunidad" class="form-select @error('comunidad') is-invalid @enderror" name="comunidad">
+                                        <option selected value="{{auth()->user()->comunidad}}">{{auth()->user()->comunidad}}</option>
+                                    </select>
+                                    @error('comunidad')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </li>
                             <li class="list-group-item">
-                                <strong>Provincia:</strong>
-                                <input type="text" class="form-control" name="provincia" value="{{ auth()->user()->provincia }}">
+                                <div class="mb-3">
+                                    <label for="provincia" class="form-label">Provincia</label>
+                                    <select id="provincia" class="form-select @error('provincia') is-invalid @enderror" name="provincia" disabled>
+                                        <option selected value="{{auth()->user()->provincia}}">{{auth()->user()->provincia}}</option>
+                                    </select>
+                                    @error('provincia')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="mb-3">
+                                    <label for="ciudad" class="form-label">Ciudad</label>
+                                    <select id="ciudad" class="form-select @error('ciudad') is-invalid @enderror" name="ciudad" disabled>
+                                        <option selected value="{{auth()->user()->ciudad}}">{{auth()->user()->ciudad}}</option>
+                                    </select>
+                                    @error('ciudad')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>  
                             </li>
                             <li class="list-group-item">
                                 <strong>Edad:</strong>
@@ -103,10 +141,7 @@
                                 <strong>Sexo:</strong>
                                 <input type="text" class="form-control" name="sexo" value="{{ auth()->user()->sexo }}">
                             </li>
-                            <li class="list-group-item">
-                                <strong>Cambiar contraseña:</strong>
-                                <input type="password" class="form-control" name="password">
-                            </li>
+                            
                             <li class="list-group-item">
                                 <strong>Repite Nueva contraseña:</strong>
                                 <input type="password" class="form-control" name="Rpassword">
@@ -126,6 +161,55 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        fetch('/locations.json')
+        .then(response => response.json())
+        .then(data => {
+            let comunidadSelect = document.getElementById('comunidad');
+            let provinciaSelect = document.getElementById('provincia');
+            let ciudadSelect = document.getElementById('ciudad');
+
+            data.forEach(comunidad => {
+                let option = document.createElement('option');
+                option.value = comunidad.label;
+                option.text = comunidad.label;
+                comunidadSelect.appendChild(option);
+            });
+
+            comunidadSelect.addEventListener('change', function () {
+                let selectedComunidad = data.find(c => c.label === this.value);
+
+                provinciaSelect.innerHTML = '<option value="">Seleccione una Provincia</option>';
+                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+                provinciaSelect.disabled = !selectedComunidad;
+                ciudadSelect.disabled = true;
+
+                if (selectedComunidad) {
+                    selectedComunidad.provinces.forEach(provincia => {
+                        let option = document.createElement('option');
+                        option.value = provincia.label;
+                        option.text = provincia.label;
+                        provinciaSelect.appendChild(option);
+                    });
+                }
+            });
+
+            provinciaSelect.addEventListener('change', function () {
+                let selectedComunidad = data.find(c => c.label === comunidadSelect.value);
+                let selectedProvincia = selectedComunidad.provinces.find(p => p.label === this.value);
+
+                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+                ciudadSelect.disabled = !selectedProvincia;
+
+                if (selectedProvincia) {
+                    selectedProvincia.towns.forEach(ciudad => {
+                        let option = document.createElement('option');
+                        option.value = ciudad.label;
+                        option.text = ciudad.label;
+                        ciudadSelect.appendChild(option);
+                    });
+                }
+            });
+        });
         document.getElementById('editButton').addEventListener('click', function () {
             // Mostrar el formulario de edición y ocultar la información estática
             document.getElementById('infoSection').style.display = 'none';

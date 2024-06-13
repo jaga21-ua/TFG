@@ -40,8 +40,17 @@
             </select>
         </div>
         <div class="mb-3">
-            <label for="viasAdministracion" class="form-label">Vías de Administración</label>
-            <input type="text" class="form-control" id="viasAdministracion" name="viasAdministracion" value="{{ old('viasAdministracion', $medicamento->viasAdministracion ?? '') }}" required>
+            <label for="filtroViasAdmin" class="form-label">Vías de administración</label>
+                <select id="filtroViasAdmin" name="filtroViasAdmin" class="form-select" required>
+                    <option value="">Todos</option>
+                    <option value="VÍA ORAL" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA ORAL' ? 'selected' : '' }}>Oral</option>
+                    <option value="VÍA INTRAVENOSA" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA INTRAVENOSA' ? 'selected' : '' }}>Intravenosa</option>
+                    <option value="VÍA INTRAMUSCULAR" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA INTRAMUSCULAR' ? 'selected' : '' }}>Intramuscular</option>
+                    <option value="USO CUTÁNEO" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'USO CUTÁNEO' ? 'selected' : '' }}>Uso Cutaneo</option>
+                    <option value="VÍA OFTÁLMICA" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA OFTÁLMICA' ? 'selected' : '' }}>Vía oftálmica</option>
+                    <option value="VÍA INHALATORIA" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA INHALATORIA' ? 'selected' : '' }}>Vía inhalatoria</option>
+                    <option value="VÍA RECTAL" {{ old('filtroViasAdmin', $medicamento->viasAdministracion ?? '') == 'VÍA RECTAL' ? 'selected' : '' }}>Vía rectal</option>
+                </select>
         </div>
         <div class="mb-3">
             <label for="dosis" class="form-label">Dosis</label>

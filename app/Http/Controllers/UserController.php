@@ -42,6 +42,7 @@ class UserController extends Controller
         $user->ciudad = $request->ciudad;
         $user->codigoPostal = $request->codigoPostal;
         $user->provincia = $request->provincia;
+        $user->comunidad = $request->comunidad;
         $user->edad = $request->edad;
         $user->sexo = $request->sexo;
 
@@ -77,6 +78,7 @@ class UserController extends Controller
         $user->codigoPostal = $request->input('codigoPostal');
         $user->ciudad = $request->input('ciudad');
         $user->provincia = $request->input('provincia');
+        $user->comunidad = $request->input('comunidad');
         $user->edad = $request->input('edad');
         $user->sexo = $request->input('sexo');
         

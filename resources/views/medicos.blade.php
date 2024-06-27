@@ -41,6 +41,14 @@
                 <div id="map" style="height: 500px; width: 100%;"></div>
             </div>
         </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div id="no-results" style="display: none;" class="alert alert-warning">
+                    No hay resultados para la búsqueda.
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -92,11 +100,14 @@
 
             let service = new google.maps.places.PlacesService(map);
             service.nearbySearch(request, function(results, status) {
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                    clearMarkers();
+                clearMarkers();
+                if (status === google.maps.places.PlacesServiceStatus.OK && results.length > 0) {
                     for (var i = 0; i < results.length; i++) {
                         createMarker(results[i]);
                     }
+                    document.getElementById('no-results').style.display = 'none';
+                } else {
+                    document.getElementById('no-results').style.display = 'block';
                 }
             });
         }

@@ -3,6 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <h2>Medicamentos</h2>
+    <div> <a class="btn btn-info" style="margin-left: 45%; margin-bottom: 2%" href="/adminMenu">Volver al menu</a> </div>
 
     <!-- Formulario de búsqueda -->
     <form action="{{ route('medicamentos.index') }}" method="GET" class="mb-3">

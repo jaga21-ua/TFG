@@ -160,67 +160,99 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        fetch('/locations.json')
-        .then(response => response.json())
-        .then(data => {
-            let comunidadSelect = document.getElementById('comunidad');
-            let provinciaSelect = document.getElementById('provincia');
-            let ciudadSelect = document.getElementById('ciudad');
+   document.addEventListener('DOMContentLoaded', function () {
+    fetch('/locations.json')
+    .then(response => response.json())
+    .then(data => {
+        let comunidadSelect = document.getElementById('comunidad');
+        let provinciaSelect = document.getElementById('provincia');
+        let ciudadSelect = document.getElementById('ciudad');
 
-            data.forEach(comunidad => {
-                let option = document.createElement('option');
-                option.value = comunidad.label;
-                option.text = comunidad.label;
-                comunidadSelect.appendChild(option);
-            });
+        // Función para llenar el select de provincias
+        function populateProvincias(comunidad) {
+            provinciaSelect.innerHTML = '<option value="">Seleccione una Provincia</option>';
+            ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+            provinciaSelect.disabled = !comunidad;
+            ciudadSelect.disabled = true;
 
-            comunidadSelect.addEventListener('change', function () {
-                let selectedComunidad = data.find(c => c.label === this.value);
+            if (comunidad) {
+                comunidad.provinces.forEach(provincia => {
+                    let option = document.createElement('option');
+                    option.value = provincia.label;
+                    option.text = provincia.label;
+                    provinciaSelect.appendChild(option);
+                });
+            }
+        }
 
-                provinciaSelect.innerHTML = '<option value="">Seleccione una Provincia</option>';
-                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
-                provinciaSelect.disabled = !selectedComunidad;
-                ciudadSelect.disabled = true;
+        // Función para llenar el select de ciudades
+        function populateCiudades(provincia) {
+            ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
+            ciudadSelect.disabled = !provincia;
 
-                if (selectedComunidad) {
-                    selectedComunidad.provinces.forEach(provincia => {
-                        let option = document.createElement('option');
-                        option.value = provincia.label;
-                        option.text = provincia.label;
-                        provinciaSelect.appendChild(option);
-                    });
-                }
-            });
+            if (provincia) {
+                provincia.towns.forEach(ciudad => {
+                    let option = document.createElement('option');
+                    option.value = ciudad.label;
+                    option.text = ciudad.label;
+                    ciudadSelect.appendChild(option);
+                });
+            }
+        }
 
-            provinciaSelect.addEventListener('change', function () {
-                let selectedComunidad = data.find(c => c.label === comunidadSelect.value);
-                let selectedProvincia = selectedComunidad.provinces.find(p => p.label === this.value);
-
-                ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
-                ciudadSelect.disabled = !selectedProvincia;
-
-                if (selectedProvincia) {
-                    selectedProvincia.towns.forEach(ciudad => {
-                        let option = document.createElement('option');
-                        option.value = ciudad.label;
-                        option.text = ciudad.label;
-                        ciudadSelect.appendChild(option);
-                    });
-                }
-            });
+        // Llenar el select de comunidades autónomas
+        data.forEach(comunidad => {
+            let option = document.createElement('option');
+            option.value = comunidad.label;
+            option.text = comunidad.label;
+            comunidadSelect.appendChild(option);
         });
-        document.getElementById('editButton').addEventListener('click', function () {
-            // Mostrar el formulario de edición y ocultar la información estática
-            document.getElementById('infoSection').style.display = 'none';
-            document.getElementById('editForm').style.display = 'block';
+
+        // Evento cuando se cambia la comunidad
+        comunidadSelect.addEventListener('change', function () {
+            let selectedComunidad = data.find(c => c.label === this.value);
+            populateProvincias(selectedComunidad);
         });
-        document.getElementById('SeeData').addEventListener('click', function () {
-            // Mostrar el formulario de edición y ocultar la información estática
-            document.getElementById('editForm').style.display = 'none';
-            document.getElementById('infoSection').style.display = 'block';
+
+        // Evento cuando se cambia la provincia
+        provinciaSelect.addEventListener('change', function () {
+            let selectedComunidad = data.find(c => c.label === comunidadSelect.value);
+            let selectedProvincia = selectedComunidad.provinces.find(p => p.label === this.value);
+            populateCiudades(selectedProvincia);
         });
+
+        // Pre-seleccionar valores existentes
+        let preSelectedComunidad = "{{ auth()->user()->comunidad }}";
+        let preSelectedProvincia = "{{ auth()->user()->provincia }}";
+        let preSelectedCiudad = "{{ auth()->user()->ciudad }}";
+
+        comunidadSelect.value = preSelectedComunidad;
+        let selectedComunidad = data.find(c => c.label === preSelectedComunidad);
+        populateProvincias(selectedComunidad);
+
+        if (preSelectedProvincia) {
+            provinciaSelect.value = preSelectedProvincia;
+            let selectedProvincia = selectedComunidad.provinces.find(p => p.label === preSelectedProvincia);
+            populateCiudades(selectedProvincia);
+        }
+
+        if (preSelectedCiudad) {
+            ciudadSelect.value = preSelectedCiudad;
+        }
     });
+
+    document.getElementById('editButton').addEventListener('click', function () {
+        document.getElementById('infoSection').style.display = 'none';
+        document.getElementById('editForm').style.display = 'block';
+    });
+
+    document.getElementById('SeeData').addEventListener('click', function () {
+        document.getElementById('editForm').style.display = 'none';
+        document.getElementById('infoSection').style.display = 'block';
+    });
+});
+
+
 </script>
 
 @endsection

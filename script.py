@@ -18,17 +18,11 @@ def cargar_datos_desde_json(ruta_archivo):
 # Insertar datos en la tabla 'medicamentos'
 def insertar_datos(datos):
     for resultado in datos:
-        # Obtener las URLs de las fotos de tipo "materialas"
         if "fotos" in resultado:
-            # Obtener las URLs de las fotos de tipo "materialas"
             fotos_materialas = [foto["url"] for foto in resultado["fotos"] if foto["tipo"] == "materialas"]
         else:
             fotos_materialas = None
-        
-        # Obtener el nombre de la vía de administración (asumiendo que solo hay una)
         via_administracion = resultado["viasAdministracion"][0]["nombre"] if resultado["viasAdministracion"] else None
-        
-        # Ejecutar la consulta de inserción en la base de datos
         cursor.execute('''
         INSERT INTO medicamentos (
             nregistro,

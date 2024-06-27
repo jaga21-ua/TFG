@@ -87,7 +87,7 @@
             let request = {
                 location: userLocation,
                 radius: 5000,
-                keyword: specialty || 'doctor'
+                keyword: specialty || 'health'
             };
 
             let service = new google.maps.places.PlacesService(map);

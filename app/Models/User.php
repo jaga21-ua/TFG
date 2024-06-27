@@ -52,17 +52,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    /**
-     * Get the user's diagnostics.
-     */
+    
     public function diagnosticos()
     {
         return $this->hasMany(Diagnostico::class);
     }
 
-    /**
-     * Get the user's messages.
-     */
     public function messages()
     {
         return $this->hasMany(Mensaje::class);

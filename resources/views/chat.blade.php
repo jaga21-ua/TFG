@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="chat-container" style="background-color:#88E6FF;width:820px;height: 535px;display: flex;flex-direction: column;border-radius: 30px">
+            <div class="chat-container" style="background-color:#88E6FF;width:90%;height: 535px;display: flex;flex-direction: column;border-radius: 30px">
                 <div id="chat-box" class="chat-box" style="flex: 1; overflow-y: auto; padding: 10px;"></div>
                 <div class="input-group mb-3" style="margin-top: auto; width: 90%; margin-left: auto; margin-right: auto;">
                     <input type="text" id="user-input" class="form-control" placeholder="Describe tus síntomas..." aria-label="Describe tus síntomas...">

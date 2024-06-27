@@ -16,14 +16,11 @@
 
     function initMap() {
         var defaultLocation = { lat: 40.416775, lng: -3.703790 };
-
         map = new google.maps.Map(document.getElementById('map'), {
             center: defaultLocation,
             zoom: 12
         });
-
         infowindow = new google.maps.InfoWindow();
-
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var userLocation = {
@@ -39,13 +36,11 @@
         } else {
             handleLocationError(false, map.getCenter());
         }
-
         map.addListener('click', function(event) {
             map.setCenter(event.latLng);
             searchPharmacies(event.latLng);
         });
     }
-
     function searchPharmacies(location) {
         let userLocation = location || map.getCenter();
         let openNow = document.getElementById('openNow').checked;

@@ -1,0 +1,189 @@
+{
+  "id": "2d258418-3be2-4afb-bb24-33507d09e827",
+  "version": "2.0",
+  "name": "TFG",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "718c567f-e7fc-4842-8c4a-013dee26e859",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "4d3918c1-652d-47fa-8b1e-08819046bc70",
+    "name": "tfg",
+    "commands": [{
+      "id": "096eb40c-4d78-402d-a160-11f29d64879a",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e6a6cd8d-6d93-4ad1-9286-1f81dfc556bf",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d3b74346-4018-4b2b-ad94-c50b460cc7d2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "cc99af3c-da65-4667-b7bf-9bfc6f7db852",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "0443c949-5257-4345-a8d4-0bab561eac78",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ef8b15-3a58-4202-9417-025c8451031c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }]
+  }, {
+    "id": "85be3163-cc48-4f8e-8f03-1dfc59348128",
+    "name": "tfg (1)",
+    "commands": [{
+      "id": "b0d12fcb-fca0-4289-9480-f2dbdba47ced",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "797f619c-9812-40c0-b1d9-3b71af309cdf",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "76a6ed9a-f0c6-456e-a76a-d2f73d0c0b15",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "fc1d7648-698f-4cfb-8a5e-fff72dfd5aaa",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "fb7c039d-ff25-4c05-8e06-ddabc8b385f1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efa0c2fb-195d-4bef-8de9-0e67bee47e21",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }, {
+      "id": "69e62114-58b8-4bf4-b71d-9aa2fd31ccc4",
+      "comment": "",
+      "command": "clickAt",
+      "target": "id=dropdownMenuButton",
+      "targets": [
+        ["id=dropdownMenuButton", "id"],
+        ["css=#dropdownMenuButton", "css:finder"],
+        ["xpath=//button[@id='dropdownMenuButton']", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf1c8db9-e5ea-4b8e-adee-045811bf76aa",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Cerrar sesión",
+      "targets": [
+        ["linkText=Cerrar sesión", "linkText"],
+        ["css=li:nth-child(2) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Cerrar sesión')]", "xpath:link"],
+        ["xpath=//a[@onclick=\"event.preventDefault(); document.getElementById('logout-form').submit();\"]", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//div[2]/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cerrar sesión')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e82c107-65e1-41eb-9303-1c47e5905e9a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "",
+      "targets": [],
+      "value": "Únete a nuestra aplicación médica!"
+    }]
+  }],
+  "suites": [{
+    "id": "31893f53-3d37-4480-8300-2b3de7b47c90",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["718c567f-e7fc-4842-8c4a-013dee26e859"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

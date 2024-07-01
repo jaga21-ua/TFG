@@ -1,0 +1,317 @@
+{
+  "id": "2d258418-3be2-4afb-bb24-33507d09e827",
+  "version": "2.0",
+  "name": "TFG",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "718c567f-e7fc-4842-8c4a-013dee26e859",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "4d3918c1-652d-47fa-8b1e-08819046bc70",
+    "name": "tfg",
+    "commands": [{
+      "id": "096eb40c-4d78-402d-a160-11f29d64879a",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e6a6cd8d-6d93-4ad1-9286-1f81dfc556bf",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d3b74346-4018-4b2b-ad94-c50b460cc7d2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "cc99af3c-da65-4667-b7bf-9bfc6f7db852",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "0443c949-5257-4345-a8d4-0bab561eac78",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ef8b15-3a58-4202-9417-025c8451031c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }]
+  }, {
+    "id": "85be3163-cc48-4f8e-8f03-1dfc59348128",
+    "name": "tfg (1)",
+    "commands": [{
+      "id": "b0d12fcb-fca0-4289-9480-f2dbdba47ced",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "797f619c-9812-40c0-b1d9-3b71af309cdf",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "76a6ed9a-f0c6-456e-a76a-d2f73d0c0b15",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "fc1d7648-698f-4cfb-8a5e-fff72dfd5aaa",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "fb7c039d-ff25-4c05-8e06-ddabc8b385f1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "efa0c2fb-195d-4bef-8de9-0e67bee47e21",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }, {
+      "id": "69e62114-58b8-4bf4-b71d-9aa2fd31ccc4",
+      "comment": "",
+      "command": "clickAt",
+      "target": "id=dropdownMenuButton",
+      "targets": [
+        ["id=dropdownMenuButton", "id"],
+        ["css=#dropdownMenuButton", "css:finder"],
+        ["xpath=//button[@id='dropdownMenuButton']", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bf1c8db9-e5ea-4b8e-adee-045811bf76aa",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Cerrar sesión",
+      "targets": [
+        ["linkText=Cerrar sesión", "linkText"],
+        ["css=li:nth-child(2) > .dropdown-item", "css:finder"],
+        ["xpath=//a[contains(text(),'Cerrar sesión')]", "xpath:link"],
+        ["xpath=//a[@onclick=\"event.preventDefault(); document.getElementById('logout-form').submit();\"]", "xpath:attributes"],
+        ["xpath=//a[contains(@href, '#')]", "xpath:href"],
+        ["xpath=//div[2]/div/ul/li[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Cerrar sesión')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "1e82c107-65e1-41eb-9303-1c47e5905e9a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=h1",
+      "targets": [
+        ["css=h1", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'Únete a nuestra aplicación médica!')]", "xpath:innerText"]
+      ],
+      "value": "Únete a nuestra aplicación médica!"
+    }]
+  }, {
+    "id": "cc60d2c8-e313-4fc4-817f-7ca9aa6c649f",
+    "name": "tfg (2)",
+    "commands": [{
+      "id": "87711076-5d6e-442c-9c80-472d5187c2a8",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "aeb788d7-a38b-467e-9dd2-4e6a0ea8e0d1",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "f4def210-5802-4730-bf97-f024346a8db3",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "1724da5c-2a07-439b-9f32-93a68241a6a4",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "50eefe25-8e30-407c-8fa5-08a5be58c71b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ff937f9-a65d-4f1d-ba01-f1f3e56fb18a",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }, {
+      "id": "fc4e8e3b-ff56-4e32-b40f-e0102038ca56",
+      "comment": "",
+      "command": "clickAt",
+      "target": "css=.col-md-3:nth-child(3) h3",
+      "targets": [
+        ["css=.col-md-3:nth-child(3) h3", "css:finder"],
+        ["xpath=//div[3]/a/h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Medicamentos')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9420a307-b27c-431c-ac99-f7f5bcb8a672",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=search",
+      "targets": [
+        ["name=search", "name"],
+        ["css=.form-control", "css:finder"],
+        ["xpath=//input[@name='search']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "paracetamol"
+    }, {
+      "id": "2f58ca6a-a532-40d4-ab12-323ff39cff43",
+      "comment": "",
+      "command": "clickAt",
+      "target": "css=.col-md-6 > .btn",
+      "targets": [
+        ["css=.col-md-6 > .btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[2]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Buscar')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "11203570-59fc-4ce2-9098-3444cf53cd8e",
+      "comment": "",
+      "command": "clickAt",
+      "target": "css=.col:nth-child(1) .card-img-top",
+      "targets": [
+        ["css=.col:nth-child(1) .card-img-top", "css:finder"],
+        ["xpath=//img[@alt='PARACETAMOL ABAMED 1 G COMPRIMIDOS EFG']", "xpath:img"],
+        ["xpath=//a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "33ba3165-ed1b-430b-9343-d8441f11a06d",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.col:nth-child(1) > .card-text:nth-child(1)",
+      "targets": [
+        ["css=.col:nth-child(1) > .card-text:nth-child(1)", "css:finder"],
+        ["xpath=//p", "xpath:position"],
+        ["xpath=//p[contains(.,'Número de Registro: 77758')]", "xpath:innerText"]
+      ],
+      "value": "Número de Registro: 77758"
+    }]
+  }],
+  "suites": [{
+    "id": "31893f53-3d37-4480-8300-2b3de7b47c90",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["718c567f-e7fc-4842-8c4a-013dee26e859"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

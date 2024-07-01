@@ -1,0 +1,88 @@
+{
+  "id": "2d258418-3be2-4afb-bb24-33507d09e827",
+  "version": "2.0",
+  "name": "TFG",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "718c567f-e7fc-4842-8c4a-013dee26e859",
+    "name": "Untitled",
+    "commands": []
+  }, {
+    "id": "4d3918c1-652d-47fa-8b1e-08819046bc70",
+    "name": "tfg",
+    "commands": [{
+      "id": "096eb40c-4d78-402d-a160-11f29d64879a",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e6a6cd8d-6d93-4ad1-9286-1f81dfc556bf",
+      "comment": "",
+      "command": "clickAt",
+      "target": "linkText=Iniciar sesión",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d3b74346-4018-4b2b-ad94-c50b460cc7d2",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=email",
+      "targets": [
+        ["id=email", "id"],
+        ["name=email", "name"],
+        ["css=#email", "css:finder"],
+        ["xpath=//input[@id='email']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "juan@example.com"
+    }, {
+      "id": "cc99af3c-da65-4667-b7bf-9bfc6f7db852",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[2]/div/input", "xpath:position"]
+      ],
+      "value": "password123"
+    }, {
+      "id": "0443c949-5257-4345-a8d4-0bab561eac78",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-primary",
+      "targets": [
+        ["css=.btn-primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Login')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "60ef8b15-3a58-4202-9417-025c8451031c",
+      "comment": "",
+      "command": "verifyText",
+      "target": "css=.container > div > .container > .d-flex:nth-child(1)",
+      "targets": [
+        ["css=.container > div > .container > .d-flex:nth-child(1)", "css:finder"],
+        ["xpath=//h1", "xpath:position"],
+        ["xpath=//h1[contains(.,'¡Bienvenido, Juan Perez!')]", "xpath:innerText"]
+      ],
+      "value": "¡Bienvenido, Juan Perez!"
+    }]
+  }],
+  "suites": [{
+    "id": "31893f53-3d37-4480-8300-2b3de7b47c90",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["718c567f-e7fc-4842-8c4a-013dee26e859"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

@@ -18,7 +18,7 @@
         </div>
     @endif
 
-    {{-- Mensajes de error --}}
+
     @if(session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
@@ -55,7 +55,7 @@
                 @method('PUT')
                 
                 <div class="row">
-                    <!-- Primera columna -->
+                    
                     <div class="col-md-6">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -90,7 +90,7 @@
                         </ul>
                     </div>
                     
-                    <!-- Segunda columna -->
+                    
                     <div class="col-md-6">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -150,7 +150,7 @@
                     </div>
                 </div>
             
-                <!-- Botones fuera de las columnas -->
+               
                 <button type="submit" class="btn btn-primary" id="saveChanges">Guardar Cambios</button>
                 <a class="btn btn-info" id="SeeData">Ver Datos</a>
             </form>
@@ -167,8 +167,6 @@
         let comunidadSelect = document.getElementById('comunidad');
         let provinciaSelect = document.getElementById('provincia');
         let ciudadSelect = document.getElementById('ciudad');
-
-        // Función para llenar el select de provincias
         function populateProvincias(comunidad) {
             provinciaSelect.innerHTML = '<option value="">Seleccione una Provincia</option>';
             ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
@@ -185,7 +183,6 @@
             }
         }
 
-        // Función para llenar el select de ciudades
         function populateCiudades(provincia) {
             ciudadSelect.innerHTML = '<option value="">Seleccione una Ciudad</option>';
             ciudadSelect.disabled = !provincia;
@@ -199,29 +196,22 @@
                 });
             }
         }
-
-        // Llenar el select de comunidades autónomas
         data.forEach(comunidad => {
             let option = document.createElement('option');
             option.value = comunidad.label;
             option.text = comunidad.label;
             comunidadSelect.appendChild(option);
         });
-
-        // Evento cuando se cambia la comunidad
         comunidadSelect.addEventListener('change', function () {
             let selectedComunidad = data.find(c => c.label === this.value);
             populateProvincias(selectedComunidad);
         });
-
-        // Evento cuando se cambia la provincia
         provinciaSelect.addEventListener('change', function () {
             let selectedComunidad = data.find(c => c.label === comunidadSelect.value);
             let selectedProvincia = selectedComunidad.provinces.find(p => p.label === this.value);
             populateCiudades(selectedProvincia);
         });
 
-        // Pre-seleccionar valores existentes
         let preSelectedComunidad = "{{ auth()->user()->comunidad }}";
         let preSelectedProvincia = "{{ auth()->user()->provincia }}";
         let preSelectedCiudad = "{{ auth()->user()->ciudad }}";

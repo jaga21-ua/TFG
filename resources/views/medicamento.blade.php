@@ -8,16 +8,13 @@
                     <div class="col">
 
                         @php
-                        // Decodificar el JSON de la foto para obtener un array
                             $fotos = json_decode($medicamento->photo);
                         @endphp
                         @if ($fotos && is_array($fotos) && count($fotos) > 0)
-                        {{-- Mostrar solo la primera foto --}}
                             <img src="{{ $fotos[0] }}" class="card rounded" width="325px" height="285px" style="margin-top: 5%;margin-left:5%"  alt="{{ $medicamento->nombre }}">
                         @elseif($medicamento->photo && is_string($medicamento->photo))
                             <img src="{{ asset($medicamento->photo) }}" class="card rounded" width="325px" height="285px" style="margin-top: 5%;margin-left:5%"  alt="{{ $medicamento->nombre }}">
                         @else
-                            {{-- Si no hay fotos, mostrar una imagen predeterminada o un texto alternativo --}}
                             <img src="{{ asset('medicamentosPredeterminado.png') }}" class="card rounded" width="325px" height="285px" style="margin-top: 5%;margin-left:5%" alt="{{ $medicamento->nombre }}">
                         @endif
                     
@@ -48,7 +45,6 @@
                             <p class="card-text"><strong>Dosis:</strong> {{ $medicamento->dosis ?: 'No especificado' }}</p>
                         </div>
                     </div>
-                    <!-- Agrega aquí más detalles del medicamento si es necesario -->
                 </div>
                 
             </div>

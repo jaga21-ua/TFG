@@ -27,7 +27,6 @@
                             <option value="oncologist">Oncología</option>
                             <option value="allergist">Alergología</option>
                             <option value="nephrologist">Nefrología</option>
-                            <!-- Agrega más opciones de especialidades aquí -->
                         </select>
                     </div>
 

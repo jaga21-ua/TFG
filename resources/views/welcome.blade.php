@@ -4,29 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Título de tu página</title>
-    <!-- Agregar Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Source Sans 3', sans-serif;
             background-color: #00A4D3;
-            color: #ffffff; /* Color de texto blanco para mayor contraste */
+            color: #ffffff;
             margin: 0;
             padding: 0;
         }
         .navbar {
-            border-bottom: 2px solid #ffffff; /* Línea horizontal que cubre la barra de navegación */
+            border-bottom: 2px solid #ffffff; 
         }
         .separator {
-            border-right: 2px solid #ffffff; /* Barras verticales para separar el contenido central */
-            padding-right: 10px; /* Espaciado para separar el contenido */
+            border-right: 2px solid #ffffff; 
+            padding-right: 10px; 
             padding-left: 10px;
         }
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
+    
     <nav class="navbar navbar-expand-lg navbar-dark ">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">D(ia)gnóstico</a>
@@ -80,12 +80,12 @@
         </div>
     </nav>
 
-    <!-- Contenido de tu página -->
+   
     <div class="container mt-4">
         @yield('content')
     </div>
 
-    <!-- Pie de página -->
+    
     <footer style="border-top: 2px solid #ffffff;"class="footer mt-auto py-3  text-white">
         <div class="container text-center">
             <div class="row">
@@ -110,7 +110,7 @@
         </div>
     </footer>
 
-    <!-- Agregar Bootstrap JS (opcional) -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

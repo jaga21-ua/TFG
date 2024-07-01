@@ -12,7 +12,7 @@
 
 <style>
     body {
-        background-color: #00AEEF; /* Ajusta este color al color de fondo que desees */
+        background-color: #00AEEF; 
     }
 
     h1, h2 {

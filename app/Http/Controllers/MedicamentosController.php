@@ -9,20 +9,16 @@ use Illuminate\Support\Str;
 
 class MedicamentosController extends Controller
 {
-    // Método para mostrar una lista de medicamentos
     public function index(Request $request)
     {
-        // Obtener los datos de búsqueda del formulario
         $search = $request->input('search');
         $filtroReceta = $request->input('filtroReceta');
         $filtroConduc = $request->input('filtroConduc');
         $filtroViasAdmin = $request->input('filtroViasAdmin');
         $filtroComercializado = $request->input('filtroComercializado');
-
-        // Inicializar una consulta de Eloquent para los medicamentos
+        
         $query = Medicamento::query();
 
-        // Aplicar los filtros según los parámetros recibidos
         if (!empty($search)) {
             $query->where('nombre', 'like', '%' . $search . '%');
         }
@@ -39,10 +35,10 @@ class MedicamentosController extends Controller
             $query->where('comerc', $filtroComercializado);
         }
 
-        // Ejecutar la consulta y paginar los resultados
+       
         $medicamentos = $query->paginate(20);
 
-        // Devolver la vista con los datos de los medicamentos
+        
         return view('medicamentos', [
             'medicamentos' => $medicamentos,
             'search' => $search,
@@ -55,17 +51,13 @@ class MedicamentosController extends Controller
 
     public function indexAdmin(Request $request)
     {
-        // Obtener los datos de búsqueda del formulario
+
         $search = $request->input('search');
         $filtroReceta = $request->input('filtroReceta');
         $filtroConduc = $request->input('filtroConduc');
         $filtroViasAdmin = $request->input('filtroViasAdmin');
         $filtroComercializado = $request->input('filtroComercializado');
-
-        // Inicializar una consulta de Eloquent para los medicamentos
         $query = Medicamento::query();
-
-        // Aplicar los filtros según los parámetros recibidos
         if (!empty($search)) {
             $query->where('nombre', 'like', '%' . $search . '%');
         }
@@ -82,10 +74,10 @@ class MedicamentosController extends Controller
             $query->where('comerc', $filtroComercializado);
         }
 
-        // Ejecutar la consulta y paginar los resultados
+       
         $medicamentos = $query->paginate(5);
 
-        // Devolver la vista con los datos de los medicamentos
+        
         return view('medicamentos.medicamentosAdmin', [
             'medicamentos' => $medicamentos,
             'search' => $search,

@@ -28,19 +28,19 @@
     <style>
         .user-message {
             font-family: 'Source Sans 3', sans-serif;
-            background-color: #ffffff; /* Fondo blanco */
-            color: #000000; /* Color de*/
+            background-color: #ffffff;
+            color: #000000; 
             border-radius: 10px;
             text-align: right;
             padding: 10px;
             width: 50%;
-            margin-left: auto; /* Mover el mensaje del usuario a la derecha */
+            margin-left: auto; 
             
         }
         .bot-message {
             font-family: 'Source Sans 3', sans-serif;
             background-color: #00C8F8;
-            color: #ffffff; /* Color de texto blanco para mayor contraste */
+            color: #ffffff; 
             margin: 0;
             padding: 10px;
             border-radius: 10px;
@@ -87,8 +87,6 @@
                     appendMessage(response.question);
                 } else if (response.summary) {
                     appendMessage(response.summary);
-                    
-                    // Llamada AJAX para almacenar el resumen como un mensaje
                     $.ajax({
                         url: '/diagnosticoChat',
                         method: 'POST',
@@ -136,7 +134,6 @@
     }
 
     $(document).ready(function() {
-        // Load the first question
         $.ajax({
             url: '/handleChat',
             method: 'POST',

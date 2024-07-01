@@ -45,7 +45,7 @@
                         <option value="VÍA INHALATORIA">Vía inhalatoria</option>
                         <option value="VÍA RECTAL">Vía Rectal</option>
                         
-                        <!-- Agregar más opciones según sea necesario -->
+                        
                     </select>
                 </div>
                 <div class="col-md-3 mb-3">
@@ -70,15 +70,13 @@
                     <div class="col">
                         <a href="{{ route('medicamento.show', $medicamento->id) }}" class="card bg-info" style="height: 310px;width: 330px;text-decoration: none; color: inherit;">
                             @php
-                                // Decodificar el JSON de la foto para obtener un array
+                                
                                 $fotos = json_decode($medicamento->photo);
                             @endphp
-                            {{-- Verificar si hay fotos --}}
                             @if ($fotos && is_array($fotos) && count($fotos) > 0)
-                                {{-- Mostrar solo la primera foto --}}
                                 <img src="{{ $fotos[0] }}" class="card-img-top rounded" width="190px" height="170px" alt="{{ $medicamento->nombre }}">
                             @else
-                                {{-- Si no hay fotos, mostrar una imagen predeterminada o un texto alternativo --}}
+                                
                                 <img src="{{ asset('medicamentosPredeterminado.png') }}" width="150px" height="180px" class="card-img-top" alt="{{ $medicamento->nombre }}">
                             @endif
                             <div class="card-body">

@@ -10,7 +10,7 @@
                 <a class="btn btn-info d-flex justify-content-center" href="/diagnosticoChat">D(ia)gnóstico</a>
             @else
                 <div class="row" style="margin-left: 10%">
-                    <!-- Columna izquierda -->
+                
                     <div class="col-md-6">
                         <h1>Únete a nuestra aplicación médica!</h1>
                         <p>
@@ -23,7 +23,7 @@
                             <a href="/register" class="btn btn-outline-light ms-2">Registrarse</a>
                         </div>  
                     </div>
-                    <!-- Columna derecha (imagen) -->
+                    
                     <div class="col-md-6">
                         <img src="fondo.jpg"  width="400px" height="290px" class="img-fluid rounded" alt="Imagen de fondo">
                     </div>
@@ -91,14 +91,14 @@
     </div>
     <style>
         body {
-            background-color: #00AEEF; /* Ajusta este color al color de fondo que desees */
+            background-color: #00AEEF; 
         }
     
         .col-md-3 {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid white; /* Para añadir el borde blanco alrededor de cada cuadro */
+            border: 2px solid white; 
         }
     
         h2 {

@@ -159,7 +159,7 @@
         }
     </script>
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCub_5Fkr2U92yYBckDqsusykToTGg84TU&libraries=places&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{env('Maps_key')}}&libraries=places&callback=initMap">
 </script>
 
 @endsection
